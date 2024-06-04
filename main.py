@@ -12,6 +12,7 @@
 
 import random
 import typing
+import utils
 
 
 # info is called when you create your Battlesnake on play.battlesnake.com
@@ -67,25 +68,36 @@ def move(game_state: typing.Dict) -> typing.Dict:
     elif my_neck["y"] > my_head["y"]:  # Neck is above head, don't move up
         is_move_safe["up"] = False
 
-    # TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
-    board_width = game_state['board']['width']
-    board_height = game_state['board']['height']
-    if my_head['y'] == 0:
-        is_move_safe["down"] = False
-    if board_height - 1 == my_head['y']:
-        is_move_safe["up"] = False
-    if my_head['x'] == 0:
-        is_move_safe["left"] = False
-    if board_width - 1 == my_head['x']:
-        is_move_safe["right"] = False
+    # # TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
+    # board_width = game_state['board']['width']
+    # board_height = game_state['board']['height']
+    # if my_head['y'] == 0:
+    #     is_move_safe["down"] = False
+    # if board_height - 1 == my_head['y']:
+    #     is_move_safe["up"] = False
+    # if my_head['x'] == 0:
+    #     is_move_safe["left"] = False
+    # if board_width - 1 == my_head['x']:
+    #     is_move_safe["right"] = False
 
     
     # TODO: Step 2 - Prevent your Battlesnake from colliding with itself
-    my_body = game_state['you']['body']
+    # my_body = game_state['you']['body']
+    # possible_moves = utils.possible_moves(my_body[0]['x'], my_body[0]['y']])
+
+    # if my_body in possible_moves.values():
+    #     for key, value in possible_moves:
+    #         if value == my_body[0]:
+    #             is_move_safe[key] = False
+
     
+        
+
+
 
     # TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
     # opponents = game_state['board']['snakes']
+    # all_enemy_pos = utils.all_enemy_pos(opponents)
 
     # Are there any safe moves left?
     safe_moves = []
@@ -101,10 +113,10 @@ def move(game_state: typing.Dict) -> typing.Dict:
     next_move = random.choice(safe_moves)
 
     # TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
-    # food = game_state['board']['food']
+    food = game_state['board']['food']
 
-    print(f"MOVE {game_state['turn']}: {next_move}")
-    return {"move": next_move}
+    # print(f"MOVE {game_state['turn']}: {next_move}")
+    # return {"move": next_move}
 
 
 # Start server when `python main.py` is run
