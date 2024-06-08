@@ -45,6 +45,8 @@ def end(game_state: typing.Dict):
 # See https://docs.battlesnake.com/api/example-move for available data
 def move(game_state: typing.Dict) -> typing.Dict:
 
+    # please check your microphone/headset if you can hear me
+
     is_move_safe = {
       "up": True, 
       "down": True, 
@@ -96,17 +98,19 @@ def move(game_state: typing.Dict) -> typing.Dict:
 
 
     # TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
-    opponents = game_state['board']['snakes']
-    all_enemy_pos = utils.all_enemy_pos(opponents, my_body)
+    # TODO: all of this that chris made me comment out
+    # opponents = game_state['board']['snakes']
+    # all_enemy_pos = utils.all_enemy_pos(opponents, my_body)
 
-    for move in utils.find_intersections(all_enemy_pos, safe_moves):
-        is_move_safe[move] = False
+    # for move in utils.find_intersections(all_enemy_pos, is_move_safe):
+    #     is_move_safe[move] = False
 
     # Are there any safe moves left?
-    safe_moves = []
-    for move, isSafe in is_move_safe.items():
-        if isSafe:
-            safe_moves.append(move)
+    safe_moves = [move for move, isSafe in is_move_safe.items() if isSafe]
+    # safe_moves = []
+    # for move, isSafe in is_move_safe.items():
+    #     if isSafe:
+    #         safe_moves.append(move)
 
     if len(safe_moves) == 0:
         print(f"MOVE {game_state['turn']}: No safe moves detected! Moving down")
@@ -118,8 +122,8 @@ def move(game_state: typing.Dict) -> typing.Dict:
     # TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     food = game_state['board']['food']
 
-    # print(f"MOVE {game_state['turn']}: {next_move}")
-    # return {"move": next_move}
+    print(f"MOVE {game_state['turn']}: {next_move}")
+    return {"move": next_move}
 
 
 # Start server when `python main.py` is run
