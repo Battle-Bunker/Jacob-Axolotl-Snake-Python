@@ -45,7 +45,6 @@ def end(game_state: typing.Dict):
 # See https://docs.battlesnake.com/api/example-move for available data
 def move(game_state: typing.Dict) -> typing.Dict:
 
-    # please check your microphone/headset if you can hear me
 
     is_move_safe = {
       "up": True, 
